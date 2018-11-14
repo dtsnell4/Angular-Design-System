@@ -1,0 +1,1551 @@
+﻿<style type="text/css">
+	#grid [class^=col-] {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+	}
+pre {
+ white-space: pre-wrap;       /* css-3 */
+ white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+ white-space: -pre-wrap;      /* Opera 4-6 */
+ white-space: -o-pre-wrap;    /* Opera 7 */
+ word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+blockquote {
+  font-size: 15px;
+  line-height: 25px;
+}
+</style>
+
+<block-container>
+  <!-- Nav tabs -->
+  <ul id="hover-tabs" class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active" ng-mouseover="vm.open = 'directives'" ng-mouseleave="vm.open = false">
+    	<a data-target="#directives" aria-controls="directives" role="tab" data-toggle="tab">
+    		Directives</a>
+    		<ul class="dropdown-menu" ng-show="vm.open=='directives'">
+      		<li><a data-target="#block" ng-click="vm.openSection('#block', '#directives')">Block Container</a></li>
+      		<li><a data-target="#button" ng-click="vm.openSection('#button', '#directives')">Button Container</a></li>
+          <li><a data-target="#modals" ng-click="vm.openSection('#modals', '#directives')">Modal Container</a></li>
+      		<li><a data-target="#filter" ng-click="vm.openSection('#filter', '#directives')">Filter Container</a></li>
+      		<li><a data-target="#panel" ng-click="vm.openSection('#panel', '#directives')">Panels / Cards / Tiles</a></li>
+          <li><a data-target="#accordion" ng-click="vm.openSection('#accordion', '#directives')">Accordions</a></li>
+    		</ul>
+  		</a>
+		</li>
+    <li role="presentation" ng-mouseover="vm.open = 'components'" ng-mouseleave="vm.open = false">
+    	<a data-target="#components" aria-controls="components" role="tab" data-toggle="tab">
+    		Components</a>
+    		<ul class="dropdown-menu" ng-show="vm.open=='components'">
+      		<li><a data-target="#buttons" ng-click="vm.openSection('#buttons', '#components')">Buttons</a></li>
+      		<li><a data-target="#forms" ng-click="vm.openSection('#forms', '#components')">Forms / Inputs</a></li>
+      		<li><a data-target="#tables" ng-click="vm.openSection('#tables', '#components')">Tables</a></li>
+      		<li><a data-target="#icons" ng-click="vm.openSection('#icons', '#components')">Icons</a></li>
+      		<li><a data-target="#toastrs" ng-click="vm.openSection('#toastrs', '#components')">Toastrs</a></li>
+      		<li><a data-target="#modals" ng-click="vm.openSection('#modals', '#components')">Modals</a></li>
+      		<li><a data-target="#datepicker" ng-click="vm.openSection('#datepicker', '#components')">Date Pickers</a></li>
+      		<li><a data-target="#pagination" ng-click="vm.openSection('#pagination', '#components')">Pagination</a></li>
+    		</ul>
+    	</a>
+  	</li>
+    <!-- <li role="presentation"><a data-target="#typography" aria-controls="typography" role="tab" data-toggle="tab">Typography</a></li> -->
+    <li role="presentation"><a data-target="#grid" aria-controls="grid" role="tab" data-toggle="tab">Grid System</a></li>
+    <li role="presentation" ng-mouseover="vm.open = 'helpers'" ng-mouseleave="vm.open = false">
+    	<a data-target="#helpers" aria-controls="helpers" role="tab" data-toggle="tab">
+    		Helper Classes</a>
+  			<ul class="dropdown-menu" ng-show="vm.open=='helpers'">
+      		<li><a data-target="#margins" ng-click="vm.openSection('#margins', '#helpers')">Margins</a></li>
+      		<li><a data-target="#padding" ng-click="vm.openSection('#padding', '#helpers')">Padding</a></li>
+      		<li><a data-target="#borders" ng-click="vm.openSection('#borders', '#helpers')">Borders</a></li>
+      		<li><a data-target="#floats" ng-click="vm.openSection('#floats', '#helpers')">Floats</a></li>
+      		<li><a data-target="#hidden" ng-click="vm.openSection('#hidden', '#helpers')">Hidden Content</a></li>
+      		<li><a data-target="#responsive" ng-click="vm.openSection('#responsive', '#helpers')">Responsive Hidden</a></li>
+      		<li><a data-target="#colors" ng-click="vm.openSection('#colors', '#helpers')">Colors</a></li>
+    		</ul>
+  		</a>
+		</li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="directives">
+    	<section id="block" class="margin-bottom60px">
+    		<h2 class=header>Directives</h2>
+	    	<h3>Block Container</h3>
+	    	<p>The Block Container directive is the basic building block of an AppCentral page.  This directive creates a block level <code>&lt;div&gt;</code> element inside a Bootstrap row and full width column element.  It takes an optional “header” attribute which will add an <code>&lt;h3&gt;</code> element for the title of the block.  An example of the block container is this page.  Inspect the white rectangle this text is in to see the markup.</p>
+	    	<p>In most cases this should be the first html on your page:</p>
+<pre>
+&lt;block-container  header=" ' My Header ' "&gt;
+  &lt;!—Your content goes here --&gt;
+&lt;/block-container&gt;
+</pre>
+    		<p>Will produce the following markup:</p>
+<pre>
+&lt;div class="row ng-isolate-scope" header="'Decision Letter'"&gt;
+  &lt;div class="col-md-12"&gt;
+    &lt;div class="block-flat"&gt;
+      &lt;div class="row no-margin-top ng-scope" ng-if="style.header.length &gt; 0"&gt;
+        &lt;div class="col-md-12"&gt;
+          &lt;div class="header"&gt;
+            &lt;h3 class="ng-binding"&gt;My Header&lt;/h3&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="row no-margin-top"&gt;
+        &lt;div class="col-md-12" ng-transclude=""&gt;
+          &lt;!—Your content will show up here --&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+			</section>
+
+			<section id="button" class="margin-bottom60px">
+				<h3>Button Container</h3>
+				<p>The Button Container is a simple container element which usually holds a Left Buttons or Right Buttons container, or both.  </p>
+        <blockquote>
+          The Button Container directive takes an optional <code>pagelocation</code> attribute of “top”.  This will remove the top margin to avoid extra space above the buttons when they are the first elements in the block container.
+        </blockquote>
+        <h4>Left Buttons</h4>
+        <p>The Left Buttons directive will make a button container that will automatically float and style buttons on the left side of the page. </p>
+				<h4>Right Buttons</h4>
+				<p>The Right Buttons directive will make a button container that will automatically float and style buttons on the right side of the page. </p>
+				<p>The following is an example of how to add a complete buttons container with right and left button blocks to a page:</p>
+<pre>
+&lt;buttons-container pagelocation="'top'"&gt;
+  &lt;left-buttons&gt;
+    &lt;!—Your left buttons here --&gt;
+  &lt;/left-buttons&gt;
+  &lt;right-buttons&gt;
+    &lt;!—Your right buttons here --&gt;
+  &lt;/right-buttons&gt;
+&lt;/buttons-container&gt;
+</pre>
+				<p>This will produce the following markup:</p>
+<pre>
+&lt;div class="row ng-isolate-scope no-margin-top" ng-class="{top:'no-margin-top'}[style.pagelocation]" pagelocation="'top'"&gt;
+  &lt;div class="col-md-12"&gt;
+    &lt;ng-transclude&gt;
+      &lt;div class="pull-left pull-left-not-xs sm100p form-inline leftbuttons"&gt;
+        &lt;ng-transclude&gt;
+          &lt;!—Your left buttons here --&gt;
+        &lt;/ng-transclude&gt;
+      &lt;/div&gt;
+      &lt;div class="pull-right pull-right-not-xs sm100p form-inline rightbuttons"&gt;
+        &lt;ng-transclude&gt;
+          &lt;!—Your right buttons here --&gt;
+        &lt;/ng-transclude&gt;
+      &lt;/div&gt;
+    &lt;/ng-transclude&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+				<br>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+				    <h4 class="panel-title">Example</h4>
+				  </div>
+	  			<div class="panel-body">
+						<buttons-container pagelocation="'top'">
+			        <left-buttons>
+				        <button type="button" class="btn btn-defalut">Cancel</button>
+				        <button type="button" class="btn btn-primary">Submit</button>
+			        </left-buttons>
+			        <right-buttons>
+			        <button type="button" class="btn btn-primary"><i class="fa fa-envelope"></i> Email</button>
+			          <button type="button" class="btn btn-success">Export</button>
+			        </right-buttons>
+			      </buttons-container>
+			    </div>	
+	      </div>
+      </section>
+
+      <section id="modals" class="margin-bottom60px">
+        <h3>Modal Container</h3>
+        <p>Use the Modal Container directive to create uniform, consistent modals across your application.  Based on the Bootstrap Modal JavaScript component, the modal can be shown with or withoput a header.</p>
+
+        <p>Add the following code to your page to ceate the button that calls the Modal Container Directive without a header.</p>
+
+
+<pre>
+&lt;buttons-container&gt;
+  &lt;left-buttons&gt;
+    &lt;button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal1"&gt;Open Modal&lt;/button&gt;
+  &lt;/left-buttons&gt;
+&lt;/buttons-container&gt;
+</pre>
+
+        <p>Add the following code to create the modal itself.</p>
+
+<pre>
+&lt;modal-container targetid="'modal1'"&gt;
+  &lt;modal-content&gt;      
+    &lt;div class="text-center"&gt;
+      &lt;div class="i-circle info"&gt;&lt;i class="fa fa-thumbs-up"&gt;&lt;/i&gt;&lt;/div&gt;
+      &lt;h4&gt;Content Title&lt;/h4&gt;
+      &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/modal-content&gt;
+  &lt;modal-footer&gt;
+    &lt;div class="col-md-6"&gt;
+      &lt;button class="btn btn-block btn-default" data-dismiss="modal" ng-click="yourCancelFunction()"&gt;Cancel&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="col-md-6"&gt;
+      &lt;button class="btn btn-block btn-primary" data-dismiss="modal" ng-click="yourActionFunction()"&gt;OK&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/modal-footer&gt;
+&lt;/modal-container&gt;
+</pre>
+
+        <br>
+        <blockquote>
+          The <code>targetid</code> attribute of the modal container becomes the <code>id</code> attribute of the resulting modal.  This <em>unique</em> ID must match the <code>data-target</code> attribute of the button that opens the modal.
+        </blockquote>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">Example</h4>
+          </div>
+          <div class="panel-body">
+            <buttons-container>
+              <left-buttons>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal1">Open Modal</button>
+              </left-buttons>
+            </buttons-container>
+          </div>    
+          <modal-container targetid="'modal1'">
+            <modal-content>      
+              <div class="text-center">
+                <div class="i-circle info"><i class="fa fa-thumbs-up"></i></div>
+                <h4>Content Title</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              </div>
+            </modal-content>
+            <modal-footer>
+              <div class="col-md-6">
+                <button class="btn btn-block btn-default" data-dismiss="modal" ng-click="yourCancelFunction()">Cancel</button>
+              </div>
+              <div class="col-md-6">
+                <button class="btn btn-block btn-primary" data-dismiss="modal" ng-click="yourActionFunction()">OK</button>
+              </div>
+            </modal-footer>
+          </modal-container>
+        </div>
+        <br>
+
+        <blockquote>
+          To create a modal with a header, add the <code>header</code> attribute to the modal container directive.
+        </blockquote>
+        <blockquote>
+          Note: Headers are typically reserved for modals with forms in them.
+        </blockquote>
+
+<pre>
+&lt;modal-container header="'Modal Header'" targetid="'modal2'"&gt;
+  &lt;modal-content&gt;      
+    &lt;div class="text-center"&gt;
+      &lt;div class="i-circle info"&gt;&lt;i class="fa fa-upload"&gt;&lt;/i&gt;&lt;/div&gt;
+      &lt;h4&gt;Content Title&lt;/h4&gt;
+      &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/modal-content&gt;
+  &lt;modal-footer&gt;
+    &lt;div class="col-md-6"&gt;
+      &lt;button class="btn btn-block btn-default" data-dismiss="modal" ng-click="vm.cancel()"&gt;Cancel&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="col-md-6"&gt;
+      &lt;button class="btn btn-block btn-primary" data-dismiss="modal" ng-click="vm.upload()"&gt;OK&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/modal-footer&gt;
+&lt;/modal-container&gt;
+</pre>
+        <br>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">Example</h4>
+          </div>
+          <div class="panel-body">
+            <buttons-container>
+              <left-buttons>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal2">Open Modal With Header</button>
+              </left-buttons>
+            </buttons-container>
+          </div>    
+          <modal-container header="'Modal Header'" targetid="'modal2'">
+            <modal-content>      
+              <div class="text-center">
+                <div class="i-circle info"><i class="fa fa-thumbs-up"></i></div>
+                <h4>Content Title</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              </div>
+            </modal-content>
+            <modal-footer>
+              <div class="col-md-6">
+                <button class="btn btn-block btn-default" data-dismiss="modal" ng-click="yourCancelFunction()">Cancel</button>
+              </div>
+              <div class="col-md-6">
+                <button class="btn btn-block btn-primary" data-dismiss="modal" ng-click="yourActionFunction()">OK</button>
+              </div>
+            </modal-footer>
+          </modal-container>
+        </div>
+
+      </section>
+
+      <section id="filter" class="margin-bottom60px">
+	      <h3>Filter Container</h3>
+	      <p>The Filter Container is used on pages with large amounts of data that is able to be filtered via various form controls.  It organizes, styles, and can show or hide the filters as needed.</p>
+	      <p>Add the following code around your filter/form set:</p>
+<pre>
+&lt;filters-container toastrexpires="May 20, 2019"&gt;
+  &lt;!—Your form/filter inputs here --&gt;
+&lt;/filters-container&gt;
+</pre>
+				<p>This will produce the following markup:</p>
+<pre>
+&lt;div class="filter-block closed ng-isolate-scope opened" toastrexpires="May 20, 2019"&gt;
+  &lt;button id="show-filters" ng-click="vm.activate()" class="btn btn-default btn-padding btn-sm"&gt;
+    &lt;i class="fa fa-plus hidden-md hidden-lg hidden"&gt;&lt;/i&gt;
+    &lt;i class="fa fa-minus hidden-md hidden-lg"&gt;&lt;/i&gt; 
+    &lt;i class="fa fa-chevron-up hidden-sm hidden-xs hidden"&gt;&lt;/i&gt;
+    &lt;i class="fa fa-chevron-down hidden-sm hidden-xs"&gt;&lt;/i&gt; Filters
+  &lt;/button&gt;
+  &lt;div class="filter-content" style="display: block;"&gt;
+    &lt;div class="row no-margin hidden-sm hidden-xs"&gt;
+      &lt;div class="col-xs-12 filter-header"&gt;
+        &lt;a href="" id="pin-filters" class="rotateLeft90 hidden-sm hidden-xs" ng-click="vm.pinFilters()"&gt;
+          &lt;i class="fa fa-thumb-tack" title="Pin Filters"&gt;&lt;/i&gt;
+        &lt;/a&gt; 
+        &lt;span&gt;Filters&lt;/span&gt; 
+        &lt;a href="" id="close-filters" class="hidden-sm hidden-xs" ng-click="vm.activate()"&gt;
+          &lt;i class="fa fa-times"&gt;&lt;/i&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="row no-margin"&gt;&lt;div class="col-xs-12" ng-transclude=""&gt; 
+      &lt;!—Your form/filter inputs here --&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+				    <h4 class="panel-title">Example</h4>
+				  </div>
+	  			<div class="panel-body">
+						<div class="row no-margin-top">
+							<div class="col-md-12">
+								<style type="text/css">
+									@media (min-width: 979px) {
+										#show-filters {
+											left: -57px;
+											top: -25px;
+										} 
+										.filter-content {
+											left: calc(-100% - 57px);
+										}
+										.filter-block.sticky-filters {
+											top: 348px;
+										}
+									}
+
+								</style>
+								<span>Use the Filters button to the left to see the Filters Container.</span> 
+								<filters-container> 
+						      <form>
+						        <div class="form-group">
+						          <input type="text" class="form-control" id="search" ng-model="model.search" placeholder="Search" ng-change="searchLetter()" />
+						        </div>
+						        <div class="form-group">
+						          <label>Start Date:</label>
+						          <nsu-bootsrap-date-picker id="dlStartDate" linked-date-picker-id="dlEndDate" ng-model="myDate.dtFrom" format="shortdate"> </nsu-bootsrap-date-picker>
+						        </div>
+						        <div class="form-group">
+						          <label>End Date:</label>
+						          <nsu-bootsrap-date-picker id="dlEndDate" linked-date-picker-id="dlStartDate" ng-model="myDate.dtTo" format="shortdate"> </nsu-bootsrap-date-picker>
+						        </div>
+						        <div class="form-group">
+						          <button type="button" class="btn btn-primary btn-block btn-trans" ng-model="model.apply" ng-click="filterApply()">Apply</button>
+						        </div>
+						      </form>
+						    </filters-container>
+					    </div>
+				    </div>
+				  </div>
+			  </div>
+			</section>
+
+			<section id="panel" class="margin-bottom60px">
+				<h3>Panel Container (Panels/Tiles/Cards)</h3>
+				<p>The Panel Container directive creates one of three different styles of content sub-containers, a standard Bootstrap-style panel, a card (3 per row) or a tile (one per row).</p>
+        <blockquote>
+            The <strong>required</strong> <code>paneltype</code> attribute takes either “panel”, "tile”, or “card”.
+        </blockquote>
+				<h4>Panel Content</h4>
+				<p>The Panel Content directive creates the content area (or body) of the panel and styles it appropriately based on the type of panel. </p>
+        <blockquote>
+          Add the <code>sameheight</code> class to the Panel Content directive to make all the cards in a group have equal height.
+        </blockquote>
+				<h4>Panel Footer</h4>
+				<p>The Panel Footer directive will create a footer area for the panel, if desired, which can contain action buttons, additional information, etc.</p>
+				<p>To create a full card-style panel, add the following to your page:</p>
+<pre>
+&lt;panel-container paneltype="'card'"&gt;
+  &lt;panel-content class="sameheight"&gt;
+    &lt;!—Your panel content here --&gt;
+  &lt;/panel-content&gt;
+  &lt;panel-footer&gt;
+    &lt;!—Your panel footer content here --&gt;
+  &lt;/panel-footer&gt;
+&lt;/panel-container&gt;
+</pre>
+				<p>Which will render the following markup:</p>
+<pre>
+&lt;div paneltype="'card'" class="ng-isolate-scope
+  &lt;div ng-if="style.paneltype === 'card'" class="col-md-4 ng-scope"&gt;
+    &lt;div class="card nohover"&gt;
+      &lt;div class="panel panel-default panel-square" ng-transclude=""&gt;
+        &lt;div class="panel-body sameheight"&gt;
+          &lt;div class="row no-margin-top"&gt;
+            &lt;div class="col-md-12" ng-transclude=""&gt;
+              &lt;div class="row no-margin-top ng-scope"&gt;
+              	&lt;!—Your panel content will show here --&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;div class="panel-footer"&gt;
+      &lt;div class="row no-margin-top"&gt;
+          &lt;div class="col-md-12" ng-transclude=""&gt;
+            &lt;!—Your panel footer content will show here --&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+				<br>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+				    <h4 class="panel-title">Example</h4>
+				  </div>
+	  			<div class="panel-body">
+						<div class="row">
+							<div class="col-md-12">
+								<panel-container paneltype="'card'">
+								  <panel-content class="sameheight">
+								    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis faucibus ex nisl, eget varius augue dictum sed. In a justo eget metus malesuada molestie. </p>
+								  </panel-content>
+								  <panel-footer>
+								    <buttons-container pagelocation="'top'">
+										  <left-buttons>
+										    <button class="btn btn-sm btn-default btn-sm-block"><i class="fa fa-pencil-square-o"></i> EDIT</button>
+										  </left-buttons>
+										</buttons-container>
+								  </panel-footer>
+								</panel-container>
+							</div>
+						</div>
+					</div>
+				</div>
+	    </div>
+    </section>
+
+    <section id="accordion" class="margin-bottom60px">
+      <h3>Accordion Container</h3>
+      <p>Use the Accordion Directive to create standard web accordions with a variety of styles and methods. Accordions use the panel component for structuring content.</p>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">Example - Basic Accordion</h4>
+        </div>
+        <div class="panel-body">
+          <div class="row no-margin-top">
+            <div class="col-md-12">
+              <div class="panel-group accordion accordion-semi" id="basic">
+                <accordion-container header="'The Basic Accordion'" targetid="'basictarget1'" startopen="true">
+                  <accordion-content>
+                    <p>This is an example of a basic accordion.  Accordions are constructed using four directives.  The <code>&lt;accordion-group&gt;</code> container contains all the accordions that should be grouped together and interact with each other.  By default when an accordion is opened, the currently open accordion is closed.<p>
+                    <p><code>&lt;accordion-container&gt;</code> is the main container using the <code>panel panel-default</code> classes. Inside that go the <code>&lt;accordion-content&gt;</code> and the <code>&lt;accordion-footer&gt;</code> tags.</p>
+                    <p>Open the next accordion to see sample code to create an accordion group.</p>
+                  </accordion-content>
+                  <accordion-footer>
+                    <span><i class="fa fa-info-circle"></i> The accordion footer.</span>
+                  </accordion-footer>
+                </accordion-container>
+
+                <accordion-container header="'Basic Accordion Markup'" targetid="'basictarget2'">
+                  <accordion-content>
+                    <p>Add the following markup to the page to make an accordion.  Then add your content inside the header and footer.</p>
+
+<pre>
+&lt;div class="panel-group accordion accordion-semi" id="basic"&gt;
+  &lt;accordion-container header="'The Basic Accordion'" targetid="'basictarget1'" groupid="'basic'" startopen="true" ng-repeat=""&gt;
+    &lt;accordion-content&gt;
+      <-- Your main content goes here --> 
+      .
+      .
+      .
+    &lt;/accordion-content&gt;
+    &lt;accordion-footer&gt;
+      <-- Your footer content goes here -->
+    &lt;/accordion-footer&gt;
+  &lt;/accordion-container&gt;
+  <-- Additional accordion containers go here -->
+  <-- OR add the 'ng-repeat' directive to the accordion contanier element -->
+  .
+  .
+  .
+&lt;div&gt;
+</pre>
+                  </accordion-content>
+                  <accordion-footer>
+                    <i class="fa fa-info-circle"></i>If you don't need a footer, then simply omit the <code>&lt;accordion-footer&gt;</code> tags
+                  </accordion-footer>
+                </accordion-container>
+
+                <accordion-container header="'The Parameters'" targetid="'basictarget3'">
+                  <accordion-content>
+                    <p>The parameters required for creating an accordion for each of the directive tags are as follows:</p>
+                    <dl>
+                      <dt>header</dt>
+                      <dd>This is the text (or html with some modification) that will appear in the accordion header.</dd>
+                      <dt>groupid</dt>
+                      <dd>This is the same ID as in the Accordion Group above.</dd>
+                      <dt>targetid</dt>
+                      <dd>This is an id unique to the page for this specific accordion. This ID allows an accordion heading to know which content to open when it is clicked.</dd>
+                      <dt>startopen</dt>
+                      <dd>Add this optional attribute and set it to true if you want an accorion panel to start opened.</dd>
+                      <dt>color</dt>
+                      <dd>Add one of the context colors to the header background. (see example below)</dd>
+                      <dt>ui.sortable</dt>
+                      <dd>This is the optional Angular directive to make accordions draggable/sortable. (see example below)</dd>
+                      <dt>preview</dt>
+                      <dd>Add this optional attribute to add content that is visible under the header when the accordion is closed. (see example below)</dd>
+                      <dt>active</dt>
+                      <dd>Set <code>active="true"</code> to add the <code>.panel-header-active</code> class to the panel header.</dd>
+                    </dl>
+                  </accordion-content>
+                </accordion-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <blockquote>NOTE: If you want more than one accordion to be open at once, simply omit the <code>groupid</code> parameter.</blockquote>
+
+      <h4>Accordion With Colored Headers</h4>
+      <p>Accordion headers default to a white background color. By using the optional <code>color</code> parameter, you can give the header background one of the bootstrap context colors: <strong>default, primary, success, warning</strong> and <strong>danger</strong>.</p>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">Example - Accordion With Colored Headers</h4>
+        </div>
+        <div class="panel-body">
+          <div class="row no-margin-top">
+            <div class="col-md-12">
+              <div class="panel-group accordion accordion-semi" id="color">
+                <accordion-container header="'Default Color Header'" targetid="'colortarget1'" groupid="'color'" startopen="true" color="'default'">
+                  <accordion-content>
+                    <p>Buy Adding the <code>color</code> attribute to the <code>&lt;accordion-container&gt;</code> tag, it will automatically apply the corresponding context color to the header when the accordion panel is open. </p>
+<pre>
+&lt;accordion-container color="'primary'"... 
+</pre>
+                  </accordion-content>
+                  <accordion-footer>
+                    <span> The accordion footer.</span>
+                  </accordion-footer>
+                </accordion-container>
+
+                <accordion-container header="'Primary Color Header'" targetid="'colortarget2'" groupid="'color'" color="'primary'">
+                  <accordion-content>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam consectetur nunc purus, eget dictum magna molestie eu. Curabitur sed est urna. Maecenas gravida, dui vitae egestas tempus, nibh massa posuere nunc, vel fermentum enim nisi eu diam. Cras et auctor odio, id rutrum lacus. Morbi cursus dolor dui, nec hendrerit nisl hendrerit id. Phasellus et erat a elit ornare vulputate. Nam commodo posuere ligula, non blandit arcu aliquet eu. Sed et ultrices lorem. Phasellus scelerisque eget lacus vel elementum. Donec at nulla suscipit neque placerat maximus. Nunc at accumsan augue. Donec sagittis vulputate lobortis. Praesent sit amet dolor rutrum dui gravida faucibus quis ut lorem. Nulla lobortis mollis felis, in suscipit sapien semper quis.</p>
+                  </accordion-content>
+                  <accordion-footer>
+                    If you don't need a footer, then simply omit the <code>&lt;accordion-footer&gt;</code> tags
+                  </accordion-footer>
+                </accordion-container>
+
+                <accordion-container header="'Success Color Header'" targetid="'colortarget3'" groupid="'color'" color="'success'">
+                  <accordion-content>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam consectetur nunc purus, eget dictum magna molestie eu. Curabitur sed est urna. Maecenas gravida, dui vitae egestas tempus, nibh massa posuere nunc, vel fermentum enim nisi eu diam. Cras et auctor odio, id rutrum lacus. Morbi cursus dolor dui, nec hendrerit nisl hendrerit id. Phasellus et erat a elit ornare vulputate. Nam commodo posuere ligula, non blandit arcu aliquet eu. Sed et ultrices lorem. Phasellus scelerisque eget lacus vel elementum. Donec at nulla suscipit neque placerat maximus. Nunc at accumsan augue. Donec sagittis vulputate lobortis. Praesent sit amet dolor rutrum dui gravida faucibus quis ut lorem. Nulla lobortis mollis felis, in suscipit sapien semper quis.</p>
+                  </accordion-content>
+                </accordion-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h4>Draggable/Sortable Accordions</h4>
+      <p>Accordion can be made to be draggable and sortable by using Angular's <a href="https://github.com/angular-ui/ui-sortable">ui.sortable</a> directive.  </p>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">Example - Sortable Accordions</h4>
+        </div>
+        <div class="panel-body">
+          <div class="row no-margin-top">
+            <div class="col-md-12">
+              <div class="panel-group accordion accordion-semi" id="sortable" ui-sortable="vm.sortableOptions" ng-model="vm.sortModel">
+                <accordion-container header="item.header" targetid="item.id" ng-repeat="item in vm.sortModel">
+                  <accordion-content ng-bind-html="item.content">
+                  
+                  </accordion-content>
+                </accordion-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h4>Accordions With Always-Visible Info</h4>
+      <p>Accordions can have a content area under the header that is not part of the collapsable content so it is always visible.</p>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">Example - Accordions With Previews</h4>
+        </div>
+        <div class="panel-body">
+          <div class="row no-margin-top">
+            <div class="col-md-12">
+              <div class="panel-group accordion accordion-semi" id="preview">
+                <accordion-container header="item.header" preview="item.preview" targetid="item.id" groupid="'preview'" startopen="$index == 0"
+                      ng-repeat="item in vm.previewModel">
+                  <accordion-content ng-bind-html="item.content">
+
+                  </accordion-content>
+                </accordion-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div role="tabpanel" class="tab-pane" id="components">
+
+    <h2 class="header">Components</h2>
+    	<section id="buttons" class="margin-bottom60px">
+	    	<h3>Buttons</h3>
+	  		<p>Use the button classes on an <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code>, or <code>&lt;input&gt;</code> element. There are six main styles for buttons.</p>
+<pre>
+&lt;!-- Standard button --&gt;
+&lt;button type="button" class="btn btn-default"&gt;Default&lt;/button&gt;
+
+&lt;!-- Provides extra visual weight and identifies the primary action in a set of buttons --&gt;
+&lt;button type="button" class="btn btn-primary"&gt;Primary&lt;/button&gt;
+
+&lt;!-- Indicates a successful or positive action --&gt;
+&lt;button type="button" class="btn btn-success"&gt;Success&lt;/button&gt;
+
+&lt;!-- Contextual button for informational alert messages --&gt;
+&lt;button type="button" class="btn btn-info"&gt;Info&lt;/button&gt;
+
+&lt;!-- Indicates caution should be taken with this action --&gt;
+&lt;button type="button" class="btn btn-warning"&gt;Warning&lt;/button&gt;
+
+&lt;!-- Indicates a dangerous or potentially negative action --&gt;
+&lt;button type="button" class="btn btn-danger"&gt;Danger&lt;/button&gt;
+
+&lt;!-- Deemphasize a button by making it look like a link while maintaining button behavior --&gt;
+&lt;button type="button" class="btn btn-link"&gt;Link&lt;/button&gt;
+</pre>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+				    <h4 class="panel-title">Example</h4>
+				  </div>
+	  			<div class="panel-body">
+						<div class="row no-margin-top">
+							<div class="col-md-12">
+								<!-- Standard button -->
+								<button type="button" class="btn btn-default">Default</button>
+
+								<!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+								<button type="button" class="btn btn-primary">Primary</button>
+
+								<!-- Indicates a successful or positive action -->
+								<button type="button" class="btn btn-success">Success</button>
+
+								<!-- Contextual button for informational alert messages -->
+								<button type="button" class="btn btn-info">Info</button>
+
+								<!-- Indicates caution should be taken with this action -->
+								<button type="button" class="btn btn-warning">Warning</button>
+
+								<!-- Indicates a dangerous or potentially negative action -->
+								<button type="button" class="btn btn-danger">Danger</button>
+
+								<!-- Deemphasize a button by making it look like a link while maintaining button behavior -->
+								<button type="button" class="btn btn-link">Link</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br>
+
+				<h4>Button Sizes</h4>
+				<p>Add the classes <code>.btn-lg</code>, <code>.btn-sm</code>, or <code>.btn-xs</code> to change the size of the buttons.</p>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+				    <h4 class="panel-title">Example</h4>
+				  </div>
+	  			<div class="panel-body">
+						<div class="row no-margin-top">
+							<div class="col-md-12">
+								<button type="button" class="btn btn-primary btn-xs">Extra Small</button>
+								<button type="button" class="btn btn-primary btn-sm">Small</button>
+								<button type="button" class="btn btn-primary">Default</button>
+								<button type="button" class="btn btn-primary btn-lg">Large</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br>
+
+				<h4>Block Buttons</h4>
+				<p>To make a button a block level element, add the <code>.btn-block</code> class.</p>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+				    <h4 class="panel-title">Example</h4>
+				  </div>
+	  			<div class="panel-body">
+						<div class="row no-margin-top">
+							<div class="col-md-12">
+								<button type="button" class="btn btn-primary btn-block">Block Level Button</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br>
+
+				<h4>Active/Disabled States</h4>
+				<p>Add the class <code>.active</code> to show the active state of a button.</p>
+				<P>Add the <code>disabled</code> attribute to buttons and the <code>.diasabled</code> class to anchor &lt;a&gt; elements to show the disabled state.</P>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+				    <h4 class="panel-title">Example</h4>
+				  </div>
+	  			<div class="panel-body">
+						<div class="row no-margin-top">
+							<div class="col-md-12">
+								<button type="button" class="btn btn-primary active">Default</button>
+								<button type="button" class="btn btn-primary active">Active</button>
+								<button type="button" class="btn btn-primary" disabled>Disabled Button</button>
+								<a type="button" class="btn btn-primary disabled">Disabled &lt;a&gt;</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br>
+
+				<h4>Buttons Groups</h4>
+				<p>Create buttons groups wrapping a series of buttons with <code>.btn</code> in <code>.btn-group</code>.</p>
+<pre>
+&lt;div class="btn-group" role="group" aria-label="..."&gt;
+  &lt;button type="button" class="btn btn-default"&gt;Left&lt;/button&gt;
+  &lt;button type="button" class="btn btn-default"&gt;Middle&lt;/button&gt;
+  &lt;button type="button" class="btn btn-default"&gt;Right&lt;/button&gt;
+&lt;/div&gt;
+</pre>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+				    <h4 class="panel-title">Example</h4>
+				  </div>
+	  			<div class="panel-body">
+						<div class="row no-margin-top">
+							<div class="col-md-12">
+								<div class="btn-group" role="group" aria-label="...">
+								  <button type="button" class="btn btn-default">Left</button>
+								  <button type="button" class="btn btn-default">Middle</button>
+								  <button type="button" class="btn btn-default">Right</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br>
+			</section>
+
+			<section id="forms" class="margin-bottom60px">
+				<h3>Forms / Inputs</h3>
+				<p>When creating form inputs, wrap input/label pairs in a <code>div</code> with the class <code>.form-group</code> to add the default styles.  This includes being block level with a width of 100%.</p>
+<pre>
+&lt;form&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label for="exampleInputEmail1"&gt;Email address&lt;/label&gt;
+    &lt;input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email"&gt;
+  &lt;/div&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label for="exampleInputPassword1"&gt;Password&lt;/label&gt;
+    &lt;input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"&gt;
+  &lt;/div&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label for="exampleInputFile"&gt;File input&lt;/label&gt;
+    &lt;input type="file" id="exampleInputFile"&gt;
+    &lt;p class="help-block"&gt;Example block-level help text here.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="checkbox"&gt;
+    &lt;label&gt;
+      &lt;input type="checkbox"&gt; Check me out
+    &lt;/label&gt;
+  &lt;/div&gt;
+  &lt;button type="submit" class="btn btn-default"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+</pre>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+				    <h4 class="panel-title">Example</h4>
+				  </div>
+	  			<div class="panel-body">
+						<div class="row no-margin-top">
+							<div class="col-md-12">
+								<form>
+								  <div class="form-group">
+								    <label for="exampleInputEmail1">Email address</label>
+								    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+								  </div>
+								  <div class="form-group">
+								    <label for="exampleInputPassword1">Password</label>
+								    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+								  </div>
+								  <div class="form-group">
+								    <label for="exampleInputFile">File input</label>
+								    <input type="file" id="exampleInputFile">
+								    <p class="help-block">Example block-level help text here.</p>
+								  </div>
+								  <div class="checkbox">
+								    <label>
+								      <input type="checkbox"> Check me out
+								    </label>
+								  </div>
+								  <button type="submit" class="btn btn-default">Submit</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br>
+
+				<h4>Inline Forms</h4>
+				<p>To create in-line forms, simply add the class <code>.form-inline</code> to the form's main container.</p>
+<pre>
+&lt;form class="form-inline"&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label for="exampleInputName2"&gt;Name&lt;/label&gt;
+    &lt;input type="text" class="form-control" id="exampleInputName2" placeholder="Dan Snell"&gt;
+  &lt;/div&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label for="exampleInputEmail2"&gt;Email&lt;/label&gt;
+    &lt;input type="email" class="form-control" id="exampleInputEmail2" placeholder="dsnell@nova.edu"&gt;
+  &lt;/div&gt;
+  &lt;button type="submit" class="btn btn-default"&gt;Send invitation&lt;/button&gt;
+&lt;/form&gt;
+</pre>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+				    <h4 class="panel-title">Example</h4>
+				  </div>
+	  			<div class="panel-body">
+						<div class="row no-margin-top">
+							<div class="col-md-12">
+							  <form class="form-inline">
+								  <div class="form-group">
+								    <label for="exampleInputName2">Name</label>
+								    <input type="text" class="form-control" id="exampleInputName2" placeholder="Dan Snell">
+								  </div>
+								  <div class="form-group">
+								    <label for="exampleInputEmail2">Email</label>
+								    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="dsnell@nova.edu">
+								  </div>
+								  <div class="form-group">
+									  <button type="submit" class="btn btn-primary">Submit</button>
+								  </div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br>
+
+	 			<h4>Validation Styles</h4>
+	 			<p>Use validation classes to show styling for error, warning, and success states on form controls. To use, add <code>.has-warning</code>, <code>.has-error</code>, or <code>.has-success</code> to the parent element. Any <code>.control-label</code>, <code>.form-control</code>, and <code>.help-block</code> within that element will receive the validation styles.</p>
+<pre>
+&lt;div class="form-group has-success"&gt;
+  &lt;label class="control-label" for="inputSuccess1"&gt;Input with success&lt;/label&gt;
+  &lt;input type="text" class="form-control" id="inputSuccess1" aria-describedby="helpBlock2"&gt;
+  &lt;span id="helpBlock2" class="help-block"&gt;A block of help text that breaks onto a new line and may extend beyond one line.&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="form-group has-warning"&gt;
+  &lt;label class="control-label" for="inputWarning1"&gt;Input with warning&lt;/label&gt;
+  &lt;input type="text" class="form-control" id="inputWarning1"&gt;
+&lt;/div&gt;
+&lt;div class="form-group has-error"&gt;
+  &lt;label class="control-label" for="inputError1"&gt;Input with error&lt;/label&gt;
+  &lt;input type="text" class="form-control" id="inputError1"&gt;
+&lt;/div&gt;
+</pre>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+				    <h4 class="panel-title">Example</h4>
+				  </div>
+	  			<div class="panel-body">
+						<div class="row no-margin-top">
+							<div class="col-md-6">
+							  <div class="form-group has-success">
+								  <label class="control-label" for="inputSuccess1">Input with success</label>
+								  <input type="text" class="form-control" id="inputSuccess1">
+								</div>
+								<div class="form-group has-warning">
+								  <label class="control-label" for="inputWarning1">Input with warning</label>
+								  <input type="text" class="form-control" id="inputWarning1">
+								</div>
+								<div class="form-group has-error">
+								  <label class="control-label" for="inputError1">Input with error</label>
+								  <input type="text" class="form-control" id="inputError1">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br>
+			</section>
+
+			<section id="tables" class="margin-bottom60px">
+				<h3>Tables</h3>
+				<p>AppCentral tables have a standardized appearance. To create a table, start by adding the <code>&lt;table&gt;</code> element with the classes <code>.no-border</code> and <code>.mobile-table</code> to assure it looks appropriate on mobile.  Then add the <code>&lt;thead&gt;</code> element with the classes <code>.no-border</code> and <code>.mobile-hide</code>.  Add the optional <code>.nowrap</code> class if the content of the headers should never wrap lines.  Finally, add the <code>&lt;tbody&gt;</code> element with the classes <code>.no-border-x</code> and “<code>.no-border-y</code>. </p>
+<pre>
+&lt;table class="no-border mobile-table"&gt;
+  &lt;thead class="no-border mobile-hide nowrap"&gt;
+    &lt;tr&gt;
+      &lt;th&gt;
+        ...
+      &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class="no-border-x no-border-y"&gt;
+    &lt;tr&gt;
+      &lt;td&gt;
+       ...
+      &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</pre>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+				    <h4 class="panel-title">Example</h4>
+				  </div>
+	  			<div class="panel-body">
+						<div class="row no-margin-top">
+							<div class="col-md-12">
+							  <table class="no-border mobile-table">
+									<thead class="no-border mobile-hide nowrap">
+								  	<tr>
+								   		<th>Heading 1</th>
+								   		<th>Heading 2</th>
+								   		<th>Heading 3</th>
+								   		<th>Heading 4</th>
+								   		<th>Heading 5</th>
+								  	</tr>
+								 </thead>
+								 <tbody class="no-border-x no-border-y">
+								  	<tr>
+								  		<td>Row 1<br>Column 1</td>
+								  		<td>Row 1<br>Column 2</td>
+								  		<td>Row 1<br>Column 3</td>
+								  		<td>Row 1<br>Column 4</td>
+								  		<td>Row 1<br>Column 5</td>
+							  		</tr>
+							  		<tr>
+								  		<td>Row 2<br>Column 1</td>
+								  		<td>Row 2<br>Column 2</td>
+								  		<td>Row 2<br>Column 3</td>
+								  		<td>Row 2<br>Column 4</td>
+								  		<td>Row 2<br>Column 5</td>
+							  		</tr>
+							  		<tr>
+								  		<td>Row 3<br>Column 1</td>
+								  		<td>Row 3<br>Column 2</td>
+								  		<td>Row 3<br>Column 3</td>
+								  		<td>Row 3<br>Column 4</td>
+								  		<td>Row 3<br>Column 5</td>
+							  		</tr>
+							  		<tr>
+								  		<td>Row 4<br>Column 1</td>
+								  		<td>Row 4<br>Column 2</td>
+								  		<td>Row 4<br>Column 3</td>
+								  		<td>Row 4<br>Column 4</td>
+								  		<td>Row 4<br>Column 5</td>
+							  		</tr>
+							  		<tr>
+								  		<td>Row 5<br>Column 1</td>
+								  		<td>Row 5<br>Column 2</td>
+								  		<td>Row 5<br>Column 3</td>
+								  		<td>Row 5<br>Column 4</td>
+								  		<td>Row 5<br>Column 5</td>
+							  		</tr>
+								 	</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br>
+			</section>
+
+			<section id="icons" class="margin-bottom60px">
+				<h3>Icons</h3>
+				<p>AppCentral makes use of Font Awesome icons.  To add an icon, simply add the code:</p>
+<pre>
+&lt;i class="fa fa-anchor" aria-hidden="true"&gt;&lt;/i&gt;
+</pre>
+				<p>Replace <code>fa-anchor</code> with the class for the icon you want.</p>
+				<p>See the full list of icons here <a href="http://fontawesome.io/icons/">http://fontawesome.io/icons/</a> </p>
+
+				<br>
+			</section>
+
+			<section id="toastrs">
+				<h3>Toastrs</h3>
+				<p>Angular Toastr is a library to provide stylized, non-blocking notifications to users.  Toasters are created from the Javascript as opposed to being add to the html templates.  There are four default styles:</p>
+
+<pre>
+app.controller('foo', function($scope, toastr) {
+  toastr.success('Hello world!', 'Toastr fun!');
+});
+</pre>
+				<button class="btn btn-success toastem" ng-click="vm.toastem('success');">Toast'em</button>
+<pre>
+app.controller('foo', function($scope, toastr) {
+  toastr.info('We are opened today from 10 to 22', 'Information');
+});
+</pre>
+				<button class="btn btn-primary toastem" ng-click="vm.toastem('info');">Toast'em</button>
+<pre>
+app.controller('foo', function($scope, toastr) {
+  toastr.error('You just checked in your gulp.config file', 'Error');
+});
+</pre>
+				<button class="btn btn-warning toastem" ng-click="vm.toastem('warning');">Toast'em</button>
+<pre>
+app.controller('foo', function($scope, toastr) {
+  toastr.warning('Your computer is about to explode!', 'Warning');
+});
+</pre>
+				<p><button class="btn btn-danger toastem" ng-click="vm.toastem('error');">Toast'em</button></p>
+				<br>
+			</section>
+
+			<section id="modals" class="margin-bottom60px">
+				<h3>Modals</h3>
+
+				<p>There are two styles of modals in AppCentral.  The standard modal which has no header, and a version with a header.  The latter is only used when the modal contaiins form inputs.</p>
+				<h4>Standard Modal</h4>
+				<p>Use the code below to add a modal to your page.  Customize it with the following changes:</p>
+				<ul>
+					<li>
+						Replace the <a href="http://fontawesome.io/icons/">Font Awesome</a> "thumbs-up" icon with the appropriate icon for your modal.
+					</li>
+					<li>
+						Add the apprpriate context color class for the icon: primary, info, success, warning, error.  This color should match the color of the action button. 
+					</li>
+					<li>
+						Replace the <code>ng-click</code> function calls for the button opening the modal, the cancel button and the action button. Remove the <code>ng-click</code> attribute if there is no fucntion for a button. NOTE: if there is a cancel button function, don't forget to add it to the "x" close button on the top right.
+					</li>
+					<li>
+						Replace the body heading and text with your content.
+					</li>
+				</ul>  
+				<br>
+<pre>
+&lt;!-- Button code --&gt;
+&lt;button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" ng-click="vm.openModal()"&gt;Open Modal&lt;/button&gt;
+</pre>
+<pre>
+&lt;div class="modal fade" id="myModal" role="dialog"&gt;
+  &lt;div class="modal-dialog"&gt;
+    &lt;div class="modal-content"&gt;
+      &lt;div class="row no-margin"&gt;
+        &lt;button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="vm.cancelFunction()"&gt; &lt;span aria-hidden="true"&gt;&times;&lt;/span&gt; &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-body"&gt;
+        &lt;div class="text-center"&gt;
+          &lt;div class="i-circle info"&gt;&lt;i class="fa fa-thumbs-up"&gt;&lt;/i&gt;&lt;/div&gt;
+          &lt;h4&gt;This is the heading for the modal body content&lt;/h4&gt;
+          &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi porta imperdiet dui, a sodales lorem faucibus in. Sed sit amet consequat arcu, non tincidunt diam. Phasellus faucibus purus lorem, vitae ultrices lacus sagittis quis. Suspendisse potenti. &lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-footer"&gt;
+        &lt;div class="row no-margin-top"&gt;
+          &lt;div class="col-md-6"&gt;
+            &lt;button class="btn btn-block btn-default" data-dismiss="modal" ng-click="vm.cancelFunction()"&gt;Cancel&lt;/button&gt;
+          &lt;/div&gt;
+          &lt;div class="col-md-6"&gt;
+            &lt;button class="btn btn-block btn-primary" data-dismiss="modal" ng-click="vm.actionFunction()"&gt;Submit&lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+				    <h4 class="panel-title">Example</h4>
+				  </div>
+	  			<div class="panel-body">
+	  				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" ng-click="vm.openModal()">Open Modal</button>
+	  				<div class="modal fade" id="myModal" role="dialog">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="row no-margin">
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="vm.cancelFunction()"> <span aria-hidden="true">×</span> </button>
+						      </div>
+						      <div class="modal-body">
+						        <div class="text-center">
+						          <div class="i-circle primary"><i class="fa fa-thumbs-up"></i></div>
+						          <h4>This is the heading for the modal body content</h4>
+						          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi porta imperdiet dui, a sodales lorem faucibus in. Sed sit amet consequat arcu, non tincidunt diam. Phasellus faucibus purus lorem, vitae ultrices lacus sagittis quis. Suspendisse potenti. </p>
+						        </div>
+						      </div>
+						      <div class="modal-footer">
+						        <div class="row no-margin-top">
+						          <div class="col-md-6">
+						            <button class="btn btn-block btn-default" data-dismiss="modal" ng-click="vm.cancelFunction()">Cancel</button>
+						          </div>
+						          <div class="col-md-6">
+						            <button class="btn btn-block btn-primary" data-dismiss="modal" ng-click="vm.actionFunction()">Submit</button>
+						          </div>
+						        </div>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+					</div>
+				</div>
+				<br>
+
+				<h4>Form Modal</h4>
+				<p>Modals with form inputs have an additonal feature.  They add a modal header and title to the top of the modal.</p>
+<pre>
+&lt;!-- Button code --&gt;
+&lt;button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myheaderModal" ng-click="vm.openModal()"&gt;Open Modal&lt;/button&gt;
+</pre>
+<pre>
+&lt;div class="modal fade" id="myheaderModal" role="dialog"&gt;
+  &lt;div class="modal-dialog"&gt;
+    &lt;div class="modal-content"&gt;
+      &lt;div class="modal-header"&gt;
+        &lt;button type="button" class="close" data-dismiss="modal" aria-label="Close"&gt;&lt;span aria-hidden="true"&gt;&times;&lt;/span&gt;&lt;/button&gt;
+        &lt;h4 class="modal-title" id="myModalLabel">Modal title&lt;/h4&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-body"&gt;
+        &lt;div class="text-center"&gt;
+          &lt;div class="i-circle info"&gt;&lt;i class="fa fa-thumbs-up"&gt;&lt;/i&gt;&lt;/div&gt;
+          &lt;h4&gt;This is the heading for the modal body content&lt;/h4&gt;
+          &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi porta imperdiet dui, a sodales lorem faucibus in. Sed sit amet consequat arcu, non tincidunt diam. Phasellus faucibus purus lorem, vitae ultrices lacus sagittis quis. Suspendisse potenti. &lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-footer"&gt;
+        &lt;div class="row no-margin-top"&gt;
+          &lt;div class="col-md-6"&gt;
+            &lt;button class="btn btn-block btn-default" data-dismiss="modal" ng-click="vm.cancelFunction()"&gt;Cancel&lt;/button&gt;
+          &lt;/div&gt;
+          &lt;div class="col-md-6"&gt;
+            &lt;button class="btn btn-block btn-primary" data-dismiss="modal" ng-click="vm.actionFunction()"&gt;Submit&lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+				    <h4 class="panel-title">Example</h4>
+				  </div>
+	  			<div class="panel-body">
+	  				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myheaderModal" ng-click="vm.openModal()">Open Modal</button>
+						<div class="modal fade" id="myheaderModal" role="dialog">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+						        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+						      </div>
+						      <div class="modal-body">
+						        <div class="text-center">
+						          <div class="i-circle info"><i class="fa fa-thumbs-up"></i></div>
+						          <h4>This is the heading for the modal body content</h4>
+						          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi porta imperdiet dui, a sodales lorem faucibus in. Sed sit amet consequat arcu, non tincidunt diam. Phasellus faucibus purus lorem, vitae ultrices lacus sagittis quis. Suspendisse potenti. </p>
+						        </div>
+						      </div>
+						      <div class="modal-footer">
+						        <div class="row no-margin-top">
+						          <div class="col-md-6">
+						            <button class="btn btn-block btn-default" data-dismiss="modal" ng-click="vm.cancelFunction()">Cancel</button>
+						          </div>
+						          <div class="col-md-6">
+						            <button class="btn btn-block btn-primary" data-dismiss="modal" ng-click="vm.actionFunction()">Submit</button>
+						          </div>
+						        </div>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+					</div>
+				</div>
+				<br>
+			</section>
+
+			<section id="datepicker" class="margin-bottom60px">
+				<h3>Date Picker</h3>
+
+				<p>TBD</p>
+			</section>
+
+			<section id="pagination" class="margin-bottom60px">
+				<h3>Pagination</h3>
+
+				<p>TBD</p>
+			</section>
+
+
+    </div>
+<!-- END COMPONENTS PANE -->
+
+
+<!--     <div role="tabpanel" class="tab-pane" id="typography">
+    	<h2>Typography</h2>
+    	<p> TBD </p>
+    </div> -->
+<!-- END TYPOGRAPHY PANE -->
+
+
+    <div role="tabpanel" class="tab-pane" id="grid">
+    	<h2>Grid System</h2>
+    	<p>AppCentral uses Bootstrap’s grid system to be fluid and responsive.  For a correct layout, you must first add a container with the class <code>row</code> to create horizontal groups of content.  Inside the row, add the columns of content as required.  Each column is a container with a specifier class that determines how the rows are laid out in various screen sizes.  </p>
+    	<p>The basic column class is <code>.col-xx-#</code> where “xx” refers to the viewport size:  “xs” for extra small (&lt;786 pixels), “sm” for small (&lt;992). “md” for medium (&lt;1200), and “lg” for large (&gt;1200).  </p>
+    	<p>Bootstrap’s grid system scales up to 12 columns per row.  The “##” refers to the number of 1/12th sections of the row the column should span.  For example, in medium size a column that would span 1/3rd of the row would have a class of <code>col-md-4</code>.  This is because it takes four 1/12th sections to make up one third of the row (i.e. 4/12 = 1/3).  The class making a cloumn take up 50% of a row would be <code>col-md-6</code> (6/12 = 1/2).  100% is <code>col-md-12</code> (12/12 = 1).</p>
+    	<p>For mare details check out the <a href="http://getbootstrap.com/css/#grid" target="_blank">Bootstrap Grid System page.</a></p>
+<pre>
+&lt;!-- Stack the columns on mobile by making one full-width and the other half-width --&gt;
+&lt;div class="row"&gt;
+  &lt;div class="col-xs-12 col-md-8"&gt;.col-xs-12 .col-md-8&lt;/div&gt;
+  &lt;div class="col-xs-6 col-md-4"&gt;.col-xs-6 .col-md-4&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop --&gt;
+&lt;div class="row"&gt;
+  &lt;div class="col-xs-6 col-md-4"&gt;.col-xs-6 .col-md-4&lt;/div&gt;
+  &lt;div class="col-xs-6 col-md-4"&gt;.col-xs-6 .col-md-4&lt;/div&gt;
+  &lt;div class="col-xs-6 col-md-4"&gt;.col-xs-6 .col-md-4&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Columns are always 50% wide, on mobile and desktop --&gt;
+&lt;div class="row"&gt;
+  &lt;div class="col-xs-6"&gt;.col-xs-6&lt;/div&gt;
+  &lt;div class="col-xs-6"&gt;.col-xs-6&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="row"&gt;
+  &lt;div class="col-xs-12 col-sm-6 col-md-8"&gt;.col-xs-12 .col-sm-6 .col-md-8&lt;/div&gt;
+  &lt;div class="col-xs-6 col-md-4"&gt;.col-xs-6 .col-md-4&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="row"&gt;
+  &lt;div class="col-xs-6 col-sm-4"&gt;.col-xs-6 .col-sm-4&lt;/div&gt;
+  &lt;div class="col-xs-6 col-sm-4"&gt;.col-xs-6 .col-sm-4&lt;/div&gt;
+  &lt;!-- Optional: clear the XS cols if their content doesn't match in height --&gt;
+  &lt;div class="clearfix visible-xs-block"&gt;&lt;/div&gt;
+  &lt;div class="col-xs-6 col-sm-4"&gt;.col-xs-6 .col-sm-4&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+			    <h4 class="panel-title">Example</h4>
+			  </div>
+  			<div class="panel-body">
+					<div class="row no-margin-top">
+					  <div class="col-xs-12 col-md-8">.col-xs-12 .col-md-8</div>
+					  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+					</div>
+
+					<div class="row">
+					  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+					  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+					  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+					</div>
+
+					<div class="row">
+					  <div class="col-xs-6">.col-xs-6</div>
+					  <div class="col-xs-6">.col-xs-6</div>
+					</div>
+
+					<div class="row">
+					  <div class="col-xs-12 col-sm-6 col-md-8">.col-xs-12 .col-sm-6 .col-md-8</div>
+					  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+					</div>
+					<div class="row">
+					  <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+					  <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+					  <div class="clearfix visible-xs-block"></div>
+					  <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+					</div>
+		    </div>
+	    </div>
+	  </div>  
+<!-- END GRID SYSTEM PANE -->
+
+    <div role="tabpanel" class="tab-pane" id="helpers">
+  		<h2 class="header">Helper Classes</h2>    
+	    <section id="margins" class="margin-bottom60px">
+		    <h3>Margins</h3>
+		    <p>If you need to add quick margins to an element, just add one of the available margin helper classes.</p>
+		    <div class="panel panel-default">
+	  			<div class="panel-body">
+						<div class="row no-margin-top">
+							<div class="col-md=12 margin-left10px columns-250">
+								<p><code>no-margin</code></p>
+								<p><code>no-margin-top</code></p>
+								<p><code>no-margin-bottom</code></p>
+								<p><code>no-margin-left</code></p>
+								<p><code>no-margin-right</code></p>
+								<p><code>no-margin-y</code> (no margin top & bottom)</p>
+								<p><code>no-margin-x</code> (no margin left & right</p>
+								<p><code>no-margin-right-sm </code></p>
+								<p><code>no-margin-bottom-sm</code></p>
+								<p><code>margin30px</code></p>
+								<p><code>margin10px</code></p>
+								<p><code>margin5px</code></p>
+								<p><code>margin-left40px</code></p>
+								<p><code>margin-left10px</code></p>
+								<p><code>margin-left18px</code></p>
+								<p><code>margin-right10px</code></p>
+								<p><code>margin-right20px</code></p>
+								<p><code>margin-top40px</code></p>
+								<p><code>margin-top60px</code></p>
+								<p><code>margin-top20px</code></p>
+								<p><code>margin-top15px</code></p>
+								<p><code>margin-top10px</code></p>
+								<p><code>margintop-4px</code></p>
+								<p><code>margintop-15px-sm</code></p>
+								<p><code>margin-top8px</code></p>
+								<p><code>margin-bottom60px</code></p>
+								<p><code>margin-bottom60px</code></p>
+								<p><code>margin-bottom6px</code></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br>
+			</section>
+
+			<section id="padding" class="margin-bottom60px">
+				<h3>Padding</h3>
+				<p>If you need to add quick padding to an element, just add one of the available padding helper classes.</p>
+				<div class="panel panel-default">
+	  			<div class="panel-body">
+						<div class="row no-margin-top">
+							<div class="col-md=12 margin-left10px columns-250">
+								<p><code>no-padding</code></p>
+								<p><code>no-bottom-padding</code></p>
+								<p><code>no-left-padding</code></p>
+								<p><code>no-top-padding</code></p>
+								<p><code>no-right-padding</code></p>
+								<p><code>padding10px</code></p>
+								<p><code>padding20px</code></p>
+								<p><code>padding30px</code></p>
+								<p><code>padding-left-4px</code></p>
+								<p><code>padding-left-10px</code></p>
+								<p><code>padding-left-20px</code></p>
+								<p><code>padding-right-4px</code></p>
+								<p><code>padding5px</code></p>
+								<p><code>padding-top10px</code></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br>
+			</section>
+
+			<section id="borders" class="margin-bottom60px">
+				<h3>Borders</h3>
+				<p>If you need to add quick borders to an element, just add one of the available border helper classes.</p>
+				<div class="panel panel-default">
+	  			<div class="panel-body">
+						<div class="row no-margin-top">
+							<div class="col-md=12 margin-left10px columns-250">
+								<p><code>borderbottom-2px</code></p>
+								<p><code>borderbottom-1px</code></p>
+								<p><code>border1px</code></p>
+								<p><code>borderleft</code></p>
+								<p><code>borderright</code></p>
+								<p><code>bordertop</code></p>
+								<p><code>bordertop-12px</code></p>
+								<p><code>border-square</code> (remove border radius)</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+  		
+			<section id="floats" class="margin-bottom60px">
+		    <h3>Float Right/Left</h3>
+		    <p>Float an element to the left or right with a class. !important is included to avoid specificity issues. </p>
+<pre>
+&lt;span class="pull-right"&gt;Float Right&lt;/span&gt;
+&lt;span class="pull-left"&gt;Float Left&lt;/span&gt;
+</pre>
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+				    <h4 class="panel-title">Example</h4>
+				  </div>
+	  			<div class="panel-body">
+						<div class="row no-margin-top">
+							<div class="col-md=12">
+								<span class="pull-right"><strong>Float Right</strong></span>
+								<span class="pull-left"><strong>Float Left</strong></span>
+							</div>
+						</div>
+			    </div>
+		    </div> 
+		    <br>
+	    </section>
+
+	    <section id="hidden">
+		    <h3>Hidden Content</h3>
+		    <p>Force an element to be shown or hidden with the use of <code>show</code> and <code>hidden</code> classes. They are only compatible with block level toggling. </p>
+<pre>
+&lt;div class="show"&gt;...&lt;/div&gt;
+&lt;div class="hidden"&gt;...&lt;/div&gt;
+</pre>
+				<p>Additionally, the <code>invisible</code> class can be used to toggle only the visibility of an element, meaning its display is not modified and the element can still affect the flow of the document.</p>
+				<br>
+			</section>
+
+			<section id="responsive" class="margin-bottom60px">
+				<h3>Responsive Hidden Content</h3>
+				<p>To hide content at certain screen resolutions, add the classes  <code>hidden-xs</code>, <code>hidden-sm</code>, <code>hidden-md</code>, <code>hidden-lg</code>. They will be hidden only within their standard breakpoints.</p>
+				<p>To make elements that are normally hidden visible within a particular resolution breakpoint, use the <code>visible-xx-*</code> classes.  In this context, <code>xx</code> refers to resolution size, and <code>*</code> refers to the display property value.  Display values available are <code>block</code>, <code>inline</code> and <code>inline-block</code>.</p>
+<pre>
+&lt;p class="visible-xs-block"&gt;&lt;code&gt;visible-xs-block&lt;/code&gt;&lt;/p&gt;
+&lt;p class="visible-sm-inline"&gt;&lt;code&gt;visible-sm-inlin&lt;/code&gt;e&lt;/p&gt;
+&lt;p class="visible-md-inline-block"&gt;&lt;code&gt;visible-md-inline-block&lt;/code&gt;&lt;/p&gt;
+&lt;p class="visible-lg-block"&gt;&lt;code&gt;visible-lg-block&lt;/code&gt;&lt;/p&gt;
+</pre>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+				    <h4 class="panel-title">Example</h4>
+				  </div>
+	  			<div class="panel-body">
+						<div class="row no-margin-top">
+							<div class="col-md=12 marginleft10px">
+								<p class="visible-xs-block"><code>visible-xs-block</code></p>
+								<p class="visible-sm-inline"><code>visible-sm-inline</code></p>
+								<p class="visible-md-inline-block"><code>visible-md-inline-block</code></p>
+								<p class="visible-lg-block"><code>visible-lg-block</code></p>
+							</div>
+						</div>
+			    </div>
+		    </div> 
+		    <br>
+	    </section>
+
+			<section id="colors" class="margin-bottom60px">
+				<h3>Colors</h3>
+				<h4>Contextual Colors</h4>
+	  		<p>Convey meaning through color with a handful of emphasis utility classes. These may also be applied to links and will darken on hover just like our default link styles.</p>
+<pre>
+&lt;p class="text-muted"&gt;...&lt;/p&gt;
+&lt;p class="text-primary"&gt;...&lt;/p&gt;
+&lt;p class="text-success"&gt;...&lt;/p&gt;
+&lt;p class="text-info"&gt;...&lt;/p&gt;
+&lt;p class="text-warning"&gt;...&lt;/p&gt;
+&lt;p class="text-danger"&gt;...&lt;/p&gt;
+</pre>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+				    <h4 class="panel-title">Example</h4>
+				  </div>
+	  			<div class="panel-body">
+						<div class="row no-margin-top">
+							<div class="col-md=12">
+								<h4 class="text-muted"><strong>Muted</strong></h4>
+								<h4 class="text-primary"><strong>Primary</strong></h4>
+								<h4 class="text-success"><strong>Success</strong></h4>
+								<h4 class="text-info"><strong>Information</strong></h4>
+								<h4 class="text-warning"><strong>Warning</strong></h4>
+								<h4 class="text-danger"><strong>Danger</strong></h4>
+							</div>
+						</div>
+			    </div>
+		    </div>
+		    <br>
+
+		  	<h4>Background Colors</h4>
+				<p>Similar to the contextual text color classes, easily set the background of an element to any contextual class. Anchor components will darken on hover, just like the text classes.</p>
+<pre>
+&lt;p class="bg-primary"&gt;...&lt;/p&gt;
+&lt;p class="bg-success"&gt;...&lt;/p&gt;
+&lt;p class="bg-info"&gt;...&lt;/p&gt;
+&lt;p class="bg-warning"&gt;...&lt;/p&gt;
+&lt;p class="bg-danger"&gt;...&lt;/p&gt;
+</pre>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+				    <h4 class="panel-title">Example</h4>
+				  </div>
+	  			<div class="panel-body">
+						<div class="row no-margin-top">
+							<div class="col-md=12">
+								<p class="bg-primary padding10px"><strong>Primary</strong></p>
+								<p class="bg-success padding10px"><strong>Success</strong></p>
+								<p class="bg-info padding10px"><strong>Information</strong></p>
+								<p class="bg-warning padding10px"><strong>Warning</strong></p>
+								<p class="bg-danger padding10px"><strong>Danger</strong></p>
+							</div>
+						</div>
+			    </div>
+		    </div>
+		    <br>
+		    <h4>Other Colors</h4>
+				<p>If you need to add quick colors to an element, just add one of the available color helper classes.</p>
+				<div class="panel panel-default">
+	  			<div class="panel-body">
+						<div class="row no-margin-top">
+							<div class="col-md=12 margin-left10px columns-250">
+								<p class="tropicalocean strong">tropicalocean</p>
+								<p class="floridaskies strong">floridaskies</p>
+								<p class="deepblueocean70 strong">deepblueocean70</p>
+								<p class="deepblueocean strong">deepblueocean</p>
+								<p class="palmgreen strong">palmgreen</p>
+								<p class="hibiscusorange strong">hibiscusorange</p>
+								<p class="sunrisegold85 strong">sunrisegold85</p>
+								<p class="bootstrapred strong">bootstrapred</p>
+								<p class="bootstrappurple strong">bootstrappurple</p>
+								<p class="bootstrapmagenta strong">bootstrapmagenta</p>
+								<p class="successgreen strong">successgreen</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+ 
+	    <br>
+
+
+    </div>
+<!-- END OF HELPER CLASSES PANE -->
+
+  </div>
+
+</block-container>
+
+
+
